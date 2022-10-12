@@ -1,0 +1,66 @@
+From: Robert Luberda <robert@debian.org>
+Date: Sun, 20 Dec 2020 12:14:02 +0100
+Subject: hman: Use sensible-browser by default
+
+As execution of local CGI scripts is by default disabled in lynx
+for security reasons, make hman use sensible-browser (or value of
+MANHTMLPAGER env variable if set), even if lynx is installed.
+This fixes 'executable rejected due to location or path' error
+when hman was trying to run lynx.
+
+If a user changes lynx configuration to permit execution of
+local CGI scripts, he or she can set MANHTMLPAGER to 'lynxcgi'
+to restore the previous behaviour.
+
+Bugs-Debian: https://bugs.debian.org/963031
+---
+ man2html/hman.1  | 15 +++++++++------
+ man2html/hman.sh |  8 +-------
+ 2 files changed, 10 insertions(+), 13 deletions(-)
+
+diff --git a/man2html/hman.1 b/man2html/hman.1
+index 56bf10f..021569b 100644
+--- a/man2html/hman.1
++++ b/man2html/hman.1
+@@ -37,13 +37,16 @@ netscape, amaya, ...) to use.
+ This option overrides the
+ .B MANHTMLPAGER
+ environment variable.
+-The default is the non-httpd version of
++The default is
++.BR sensible-browser .
++.br
++A special value
++.I lynxcgi
++can be used for the non-httpd version of
+ .BR lynx ,
+-or
+-.BR sensible-browser
+-if 
+-.B lynx
+-cannot be found.
++but this requires the
++.BR lynx (1)
++command to be installed and approprietly configured.
+ .TP
+ .B \-\^H " host"
+ Specify from what host to get the man pages.
+diff --git a/man2html/hman.sh b/man2html/hman.sh
+index 091aa09..a0b5ccc 100755
+--- a/man2html/hman.sh
++++ b/man2html/hman.sh
+@@ -22,13 +22,7 @@ if [ x"$1" = x"-v" ] || [ x"$1" = x"-V" ]; then
+ 	exit 0
+ fi
+ 
+-# The user has to set MANHTMLPAGER (or he will get httpd-free lynx).
+-# Pick your favorite browser: lynx, xmosaic, netscape, arena, amaya, grail, ...
+-if [ x"$MANHTMLPAGER" = x ]  && ! which lynx > /dev/null ; then
+-	HMAN_BROWSER=sensible-browser
+-else
+-	HMAN_BROWSER=${MANHTMLPAGER-lynxcgi}
+-fi
++HMAN_BROWSER=${MANHTMLPAGER:-sensible-browser}
+ 
+ #
+ # If the man pages are on a remote host, specify it in MANHTMLHOST.

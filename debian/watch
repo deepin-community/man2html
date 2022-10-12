@@ -1,0 +1,4 @@
+# control file for the uscan(1) tool
+version=4
+opts=dversionmangle=s/\+repack// \
+http://primates.ximian.com/~flucifredi/man/man-([\d\.]+.*)\.tar\.gz

@@ -1,0 +1,58 @@
+Source: man2html
+Section: doc
+Priority: optional
+Maintainer: Robert Luberda <robert@debian.org>
+Build-Depends: debhelper-compat (= 13), dh-apache2 | apache2-dev
+Standards-Version: 4.5.1
+Rules-Requires-Root: binary-targets
+Homepage: http://users.actrix.gen.nz/michael/vhman2html.html
+Vcs-Git: https://salsa.debian.org/debian/man2html.git
+Vcs-Browser: https://salsa.debian.org/debian/man2html
+
+Package: man2html-base
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Suggests: manpages, manpages-dev
+Multi-Arch: foreign
+Description: convert man pages into HTML format
+ The package contains a command-line tool for converting man pages into
+ HTML format.
+ .
+ man2html-base is a stripped-down package containing only a man to HTML
+ converter,  useful for users who do not need any CGI interface, provided
+ in the man2html package.
+
+Package: man2html
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: apache2 | httpd-cgi | lynx,
+         gawk,
+         man-db (>= 2.4.1),
+         man2html-base (= ${binary:Version}),
+         sensible-utils,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Suggests: lynx | www-browser, swish++
+Description: browse man pages in your web browser
+ Point your web browser at http://localhost/cgi-bin/man/man2html to read and
+ search your man pages in the browser.
+ .
+ This program needs a CGI-capable HTTP server.  After installation it might
+ be required to manually enable CGI support in the HTTP server (CGI may be
+ disabled by default for the security consideration).  For apache2, this can
+ be done with the following:
+ .
+  $ sudo a2enmod cgid
+  $ sudo systemctl restart apache2
+ .
+ Features:
+  * Fast C CGI program for man/BSD-mandoc to HTML conversion.
+  * Works from the unformatted nroff/troff source.
+  * Source may be compressed.
+  * Does tbl tables (but not eqn equations).
+  * Generates hypertext links to foobar(1), abc@host, and xyzzy.h files
+  * CGI script for whatis-based alpha-indexes by section.
+  * CGI script for name-only alpha-indexes by section.
+  * CGI script for full text search (requires swish++)
+  * Front-end script to talk to a pre-launched netscape.

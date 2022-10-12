@@ -1,0 +1,35 @@
+man2html (1.6g-13) unstable; urgency=medium
+
+  hman(1) utility script will now execute sensible-browser by default
+  instead of  using lynx with its lynxcgi support, that is usually
+  disabled for security reasons.
+
+  The usage of lynxcgi by hman can be forced by using -P lynxcgi
+  option or by setting MANHTMLPAGER=lynxcgi in the environment.
+
+ -- Robert Luberda <robert@debian.org>  Sun, 20 Dec 2020 15:21:57 +0100
+
+man2html (1.6g-12) unstable; urgency=medium
+
+  The man2html package now installs Apache2 configuration file that
+  restricts access to the man2html CGI program to localhost only.
+  If it is not a desired behavior, please update settings in the
+  /etc/apache2/conf-enabled/man2html.conf file and then reload apache2.
+
+ -- Robert Luberda <robert@debian.org>  Sat, 03 Aug 2019 14:56:07 +0200
+
+man2html (1.6g-4) unstable; urgency=low
+
+  The man2html binary package has been recently split into two following parts:
+
+    1. man2html-base    which provides the command-line man to HTML converter
+                        and does not depend on any web server stuff;
+
+    2. man2html         which includes the CGI program and obviously requires
+                        both the man2html-base and web server (or lynx) to be
+                        installed.
+
+  In case you don't need to access your man pages with CGI interface, you can
+  safely remove the man2html package, leaving the base part installed only.
+
+ -- Robert Luberda <robert@debian.org>  Sun, 13 Feb 2011 13:23:31 +0100

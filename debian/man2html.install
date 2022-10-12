@@ -1,0 +1,8 @@
+man2html/scripts/cgi-aux/man/man.aux usr/share/man2html
+man2html/scripts/cgi-aux/man/mansearch.aux usr/share/man2html
+usr/bin/hman
+usr/lib/cgi-bin
+usr/share/doc/man2html-base/html
+usr/share/man/man1/hman.*
+usr/share/man2html
+var/cache
