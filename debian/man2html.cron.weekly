@@ -6,7 +6,7 @@ set -e
 
 CACHEDIR=/var/cache/man2html
 
-[ -d "$CACHEDIR" ] && which index++ >/dev/null || exit 0
+[ -d "$CACHEDIR" ] && command -v index++ >/dev/null || exit 0
 
 MANPATH=/usr/bin/manpath
 MANPATH_CONFIG=/etc/manpath.config

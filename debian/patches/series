@@ -33,3 +33,7 @@
 037-man2html-Nm-and-Bk-mdoc.patch
 038-man2html-colon-escape-sequence.patch
 039-hman-sensible-browser-by-default.patch
+040-Polish-hman.1-manpage.patch
+041-Polish-man2html.1-manpage.patch
+042-man2html-CVE-2021-40647.patch
+043-man2html-fix-asan-issues.patch
