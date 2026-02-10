@@ -1,3 +1,33 @@
+man2html (1.6g-16) unstable; urgency=medium
+
+  * Add 042-man2html-CVE-2021-40647.patch to make manidx_need() function
+    always allocate at least the required amount of memory. This fixes
+    a crash occurring on a crafted file (closes: #1021738, CVE-2021-40647).
+  * Add 043-man2html-fix-asan-issues.patch to fix some issues found by
+    AddressSanitizer.
+  * debian/rules: support building package with AddressSanitizer when
+    'asan' keyword is found in DEB_BUILD_OPTIONS.
+
+ -- Robert Luberda <robert@debian.org>  Fri, 02 Feb 2024 00:05:41 +0100
+
+man2html (1.6g-15) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Update lintian override info to new format on line 2.
+  * Update standards version to 4.6.1, no changes needed.
+
+  [ Damyan Ivanov ]
+  * Use 'command -v' instead of 'which' in cron.weekly job (closes: #993740).
+
+  [ Robert Luberda ]
+  * Add Romanian debconf templates translation of man2html (closes: #1032686).
+  * Add 040-Polish-hman.1-manpage.patch and 041-Polish-man2html.1-manpage.patch
+    with Polish translations of man pages (closes: #983626, #983627).
+  * Use 'command -v' in man2html.{postinst,config} scripts as well.
+  * Standards-Version: 4.6.2 (no changes).
+
+ -- Robert Luberda <robert@debian.org>  Sun, 14 Jan 2024 12:41:16 +0100
+
 man2html (1.6g-14) unstable; urgency=medium
 
   * Update 037-man2html-Nm-and-Bk-mdoc.patch to fix small regression

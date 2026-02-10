@@ -1,11 +1,17 @@
 #!/usr/bin/make -f
 
-DH_AUTO_OPTIONS := -v -Smakefile --parallel
-DESTDIR         := $(CURDIR)/debian/tmp
-TMPMAN          := debian/tmp.man
-export DEBIAN_CFLAGS := -Wall -Wshadow $(shell getconf LFS_CFLAGS)
+DH_AUTO_OPTIONS         := -v -Smakefile --parallel
+DESTDIR                 := $(CURDIR)/debian/tmp
+TMPMAN                  := debian/tmp.man
+DEB_CFLAGS_MAINT_APPEND := -Wall -Wshadow $(shell getconf LFS_CFLAGS)
 DEB_BUILD_MAINT_OPTIONS := hardening=+all
 DPKG_EXPORT_BUILDFLAGS  := 1
+
+ifneq (,$(filter asan,$(DEB_BUILD_OPTIONS)))
+  DEB_CFLAGS_MAINT_APPEND  += -fsanitize=address -gdwarf-4 # dwarf-4 for clang+dh_dwz due to #1016936
+  DEB_LDFLAGS_MAINT_APPEND += -fsanitize=address  -lasan
+  # override CC := clang-17
+endif
 
 include /usr/share/dpkg/buildflags.mk
 
@@ -50,7 +56,7 @@ override_dh_auto_install:
 override_dh_installman:
 	mkdir -p $(TMPMAN)
 	
-	find man man2html/locales  \( -name 'man2html.*' -o -name 'hman.*' \)                   \
+	find man man2html/locales  \( -name 'man2html.*' -o -name 'hman.*' \) '!' -name '*.po'  \
 	        | while read mp; do                                                             \
 	        lang=`echo $$mp| sed -e 's|.*/\(..\)/[^/]*$$|\1|'` ;                            \
 	        file="$(TMPMAN)/`basename $$mp`";                                               \

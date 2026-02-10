@@ -14,7 +14,7 @@ fi
 INDEX_SCRIPT=/etc/cron.weekly/man2html
 
 if [ -e /var/cache/man2html/ ] \
-    && which index++ >/dev/null \
+    && command -v index++ >/dev/null \
     && [ -x "$INDEX_SCRIPT" ] \
     && [ ! -e /var/cache/man2html/man2html.swish++.index ] \
     && [ ! -e /var/cache/man2html/man2html.swish++.index.tmp ]; then

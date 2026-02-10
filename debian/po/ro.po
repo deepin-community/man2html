@@ -1,0 +1,52 @@
+# Mesajele în limba română pentru pachetul man2html.
+# Romanian translation of man2html.
+# Copyright © 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the man2html package.
+#
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2023.
+#
+# Cronologia traducerii fișierului „man2html”:
+# Traducerea inițială, făcută de R-GC, pentru versiunea man2html 1.6g-14(2023-02-28).
+# Actualizare a traducerii pentru versiunea Y, făcută de X, Y(anul).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: man2html 1.6g-14\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-28 19:09+0000\n"
+"PO-Revision-Date: 2023-03-01 18:16+0100\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
+"Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && "
+"n%100<=19) ? 1 : 2);\n"
+"X-Bugs: Report translation errors to the Language-Team address.\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. Type: boolean
+#. Description
+#: ../man2html.templates:1001
+msgid "Should post-installation script index your man pages?"
+msgstr "Trebuie scriptul post-instalare să vă indexeze paginile de manual?"
+
+#. Type: boolean
+#. Description
+#: ../man2html.templates:1001
+msgid "Swish++ will be run once a week to index your man pages."
+msgstr ""
+"«swish++» va fi rulat o dată pe săptămână pentru a vă indexa paginile de manual."
+
+#. Type: boolean
+#. Description
+#: ../man2html.templates:1001
+msgid ""
+"The index can also be generated (in the background) by the post-installation "
+"script. This process needs quite a lot of computer resources, and can take "
+"several minutes so you can choose now if you would like to do this."
+msgstr ""
+"Indexul poate fi generat (în fundal) și de scriptul de post-instalare. Acest "
+"proces necesită destul de multe resurse ale calculatorului și poate dura câteva "
+"minute, așa că puteți alege dacă doriți să faceți acest lucru acum sau nu."
